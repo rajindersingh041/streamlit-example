@@ -11,6 +11,20 @@ import numpy as np
 """
 
 
+
+# Add a selectbox to the sidebar:
+add_selectbox = st.sidebar.selectbox(
+    'How would you like to be contacted?',
+    ('Email', 'Home phone', 'Mobile phone')
+)
+
+# Add a slider to the sidebar:
+add_slider = st.sidebar.slider(
+    'Select a range of values',
+    0.0, 100.0, (25.0, 75.0)
+)
+
+
 # with st.echo(code_location='below'):
 #     total_points = st.slider("Number of points in spiral", 1, 5000, 2000)
 #     num_turns = st.slider("Number of turns in spiral", 1, 100, 9)
