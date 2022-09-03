@@ -9,74 +9,18 @@ import numpy as np
 ## Welcome to Rajinder Singh Algo engine tool!
 
 """
+placeholder = st.empty()
 
+# Replace the placeholder with some text:
+placeholder.text("Hello")
 
+# Replace the text with a chart:
+placeholder.line_chart({"data": [1, 5, 2, 6]})
 
-# Add a selectbox to the sidebar:
-add_selectbox = st.sidebar.selectbox(
-    'How would you like to be contacted?',
-    ('Email', 'Home phone', 'Mobile phone')
-)
+# Replace the chart with several elements:
+with placeholder.container():
+     st.write("This is one element")
+     st.write("This is another")
 
-# Add a slider to the sidebar:
-add_slider = st.sidebar.slider(
-    'Select a range of values',
-    0.0, 100.0, (25.0, 75.0)
-)
-
-
-# with st.echo(code_location='below'):
-#     total_points = st.slider("Number of points in spiral", 1, 5000, 2000)
-#     num_turns = st.slider("Number of turns in spiral", 1, 100, 9)
-
-#     Point = namedtuple('Point', 'x y')
-#     data = []
-
-#     points_per_turn = total_points / num_turns
-
-#     for curr_point_num in range(total_points):
-#         curr_turn, i = divmod(curr_point_num, points_per_turn)
-#         angle = (curr_turn + 1) * 2 * math.pi * i / points_per_turn
-#         radius = curr_point_num / total_points
-#         x = radius * math.cos(angle)
-#         y = radius * math.sin(angle)
-#         data.append(Point(x, y))
-
-#     st.altair_chart(alt.Chart(pd.DataFrame(data), height=500, width=500)
-#         .mark_circle(color='#0068c9', opacity=0.5)
-#         .encode(x='x:Q', y='y:Q'))
-
-# import streamlit as st
-# import numpy as np
-
-# dataframe = np.random.randn(10, 20)
-# st.dataframe(dataframe)
-
-"""
-# My first app
-Here's our first attempt at using data to create a table:
-"""
-x = st.slider('x')  # 👈 this is a widget
-st.write(x, 'squared is', x * x)
-
-# import streamlit as st
-# import pandas as pd
-# df = pd.DataFrame({
-#   'first column': [1, 2, 3, 4],
-#   'second column': [10, 20, 30, 40]
-# })
-
-# df
-
-dataframe = pd.DataFrame(
-    np.random.randn(10, 20),
-    columns=('col %d' % i for i in range(20)))
-
-st.dataframe(dataframe.style.highlight_max(axis=0))
-
-
-chart_data = pd.DataFrame(
-     np.random.randn(20, 3),
-     columns=['a', 'b', 'c'])
-
-st.line_chart(chart_data)
+# Clear all those elements:
+placeholder.empty()
