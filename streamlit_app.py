@@ -42,6 +42,8 @@ import numpy as np
 # My first app
 Here's our first attempt at using data to create a table:
 """
+x = st.slider('x')  # 👈 this is a widget
+st.write(x, 'squared is', x * x)
 
 # import streamlit as st
 # import pandas as pd
