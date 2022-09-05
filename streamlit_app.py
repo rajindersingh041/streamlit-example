@@ -69,8 +69,8 @@ t = alt.Chart(df).transform_calculate(
 # st.altair_chart(t)
 # import plotly.graph_objects as go
 # import plotly.express as px
-# fig = px.area(df, x="x", y="y",color = 'pos')
-# st.plotly_chart(fig)
+fig = px.area(df[:5], x="x", y="y",color = 'pos')
+st.plotly_chart(fig)
 fig = go.Figure()
 fig2 = go.Figure()
 fig2.add_scattergl(x=df['x'], y=df['y'], line={'color': 'green'})
