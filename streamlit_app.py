@@ -10,7 +10,7 @@ import numpy as np
 
 """
 chart_data = pd.DataFrame(
-     np.random.randn(20, 3),
-     columns=['a', 'b', 'c'])
+     np.random.randn(20, 1),
+     columns=['a'])
 
 st.area_chart(chart_data)
