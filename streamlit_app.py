@@ -5,7 +5,7 @@ import pandas as pd
 import streamlit as st
 import numpy as np
 import plotly.graph_objs as go
-# import plotly.express as px
+import plotly.express as px
 """
 ## Welcome to Rajinder Singh Algo engine tool 2!
 
