@@ -13,4 +13,4 @@ chart_data = pd.DataFrame(
      np.random.randn(20, 1),
      columns=['a'])
 
-st.area_chart(chart_data)
+st.area_chart(chart_data, color = 'green')
