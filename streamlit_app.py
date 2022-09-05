@@ -90,7 +90,7 @@ st.plotly_chart(fig2)
 # Plot
 fig3 = go.Figure()
 fig3.add_trace(
-    go.area(name='Net',
+    go.Scatter(name='Net',
            x=df['x'],
            y=df['y'],
            marker_color=df['pos']))
