@@ -53,7 +53,7 @@ y = np.sin(x)
 df = pd.DataFrame({'x': x, 'y': y})
 
 t = alt.Chart(df).transform_calculate(
-    negative='df.y < 0'
+    negative='datum.y < 0'
 ).mark_area().encode(
     x='x',
     y=alt.Y('y', impute={'value': 0}),
