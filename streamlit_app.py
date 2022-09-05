@@ -66,3 +66,5 @@ t = alt.Chart(df).transform_calculate(
 
 st.area_chart(df, x = 'x',y = 'y')
 st.altair_chart(t)
+fig = px.area(df, x="x", y="y")
+st.plotly_chart(fig)
