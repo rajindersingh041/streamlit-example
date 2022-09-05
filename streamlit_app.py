@@ -4,6 +4,7 @@ import math
 import pandas as pd
 import streamlit as st
 import numpy as np
+import plotly.graph_objs as go
 # import plotly.express as px
 """
 ## Welcome to Rajinder Singh Algo engine tool 2!
@@ -66,10 +67,15 @@ t = alt.Chart(df).transform_calculate(
 
 # st.area_chart(df, x = 'x',y = 'y')
 # st.altair_chart(t)
-import plotly.graph_objects as go
-import plotly.express as px
-fig = px.area(df, x="x", y="y",color = 'pos')
-st.plotly_chart(fig)
+# import plotly.graph_objects as go
+# import plotly.express as px
+# fig = px.area(df, x="x", y="y",color = 'pos')
+# st.plotly_chart(fig)
+# fig = go.Figure()
+fig2 = go.Figure()
+fig2.add_scattergl(x=df['x'], y=df['y'], line={'color': 'green'})
+fig2.add_scattergl(x=df['x'], y=df['y'].where(df['y'] < 0), line={'color': 'red'})
+fig2.update_layout(showlegend=False,    title={'text':"MTM plot"},xaxis_title="Time",yaxis_title="PnL")
 
 # fig = go.Figure(
 #     data=[go.Bar(y=[2, 1, 3])],
