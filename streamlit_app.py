@@ -6,7 +6,7 @@ import streamlit as st
 import numpy as np
 
 """
-## Welcome to Rajinder Singh Algo engine tool!
+## Welcome to Rajinder Singh Algo engine tool 2!
 
 """
 chart_data = pd.DataFrame(
@@ -53,6 +53,8 @@ x = np.linspace(-2000, 2000, 375)
 y = pd.date_range('2022-09-05 09:15:00',periods = 375, freq = '1min')
 # y = np.sin(x)
 df = pd.DataFrame({'x': x, 'y': y})
+
+df
 
 t = alt.Chart(df).transform_calculate(
     negative='datum.y < 0'
