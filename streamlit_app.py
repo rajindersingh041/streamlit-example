@@ -76,7 +76,7 @@ fig2 = go.Figure()
 fig2.add_scattergl(x=df['x'], y=df['y'], line={'color': 'green'})
 fig2.add_scattergl(x=df['x'], y=df['y'].where(df['y'] < 0), line={'color': 'red'})
 fig2.update_layout(showlegend=False,    title={'text':"MTM plot"},xaxis_title="Time",yaxis_title="PnL")
-
+st.plotly_chart(fig2)
 # fig = go.Figure(
 #     data=[go.Bar(y=[2, 1, 3])],
 #     layout_title_text="A Figure Displaying Itself"
