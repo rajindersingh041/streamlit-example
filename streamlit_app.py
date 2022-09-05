@@ -48,8 +48,10 @@ import altair as alt
 import pandas as pd
 import numpy as np
 
-x = np.linspace(0, 100, 1000)
-y = np.sin(x)
+# x = 
+x = np.linspace(-2000, 2000, 375)
+y = pd.date_range('2022-09-05 09:15:00',periods = 375, freq = '1min')
+# y = np.sin(x)
 df = pd.DataFrame({'x': x, 'y': y})
 
 t = alt.Chart(df).transform_calculate(
