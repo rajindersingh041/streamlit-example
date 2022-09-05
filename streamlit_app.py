@@ -53,11 +53,12 @@ y = np.sin(x)
 df = pd.DataFrame({'x': x, 'y': y})
 
 t = alt.Chart(df).transform_calculate(
-    negative='datum.y < 0'
+    negative='df.y < 0'
 ).mark_area().encode(
     x='x',
     y=alt.Y('y', impute={'value': 0}),
     color='negative:N'
 )
 
+st.dataframe(df)
 st.altair_chart(t)
