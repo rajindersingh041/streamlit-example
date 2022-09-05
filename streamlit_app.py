@@ -66,11 +66,13 @@ t = alt.Chart(df).transform_calculate(
 
 # st.area_chart(df, x = 'x',y = 'y')
 # st.altair_chart(t)
-# fig = px.area(df, x="x", y="y")
-# st.plotly_chart(fig)
 import plotly.graph_objects as go
-fig = go.Figure(
-    data=[go.Bar(y=[2, 1, 3])],
-    layout_title_text="A Figure Displaying Itself"
-)
-fig
+import plotly.express as px
+fig = px.area(df, x="x", y="y")
+st.plotly_chart(fig)
+
+# fig = go.Figure(
+#     data=[go.Bar(y=[2, 1, 3])],
+#     layout_title_text="A Figure Displaying Itself"
+# )
+# fig
