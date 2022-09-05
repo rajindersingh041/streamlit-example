@@ -4,7 +4,7 @@ import math
 import pandas as pd
 import streamlit as st
 import numpy as np
-import plotly.express as px
+# import plotly.express as px
 """
 ## Welcome to Rajinder Singh Algo engine tool 2!
 
@@ -64,7 +64,13 @@ t = alt.Chart(df).transform_calculate(
     color='negative:N'
 )
 
-st.area_chart(df, x = 'x',y = 'y')
-st.altair_chart(t)
-fig = px.area(df, x="x", y="y")
-st.plotly_chart(fig)
+# st.area_chart(df, x = 'x',y = 'y')
+# st.altair_chart(t)
+# fig = px.area(df, x="x", y="y")
+# st.plotly_chart(fig)
+import plotly.graph_objects as go
+fig = go.Figure(
+    data=[go.Bar(y=[2, 1, 3])],
+    layout_title_text="A Figure Displaying Itself"
+)
+fig
