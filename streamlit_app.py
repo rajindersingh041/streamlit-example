@@ -71,7 +71,7 @@ t = alt.Chart(df).transform_calculate(
 # import plotly.express as px
 # fig = px.area(df, x="x", y="y",color = 'pos')
 # st.plotly_chart(fig)
-# fig = go.Figure()
+fig = go.Figure()
 fig2 = go.Figure()
 fig2.add_scattergl(x=df['x'], y=df['y'], line={'color': 'green'})
 fig2.add_scattergl(x=df['x'], y=df['y'].where(df['y'] < 0), line={'color': 'red'})
@@ -82,3 +82,5 @@ st.plotly_chart(fig2)
 #     layout_title_text="A Figure Displaying Itself"
 # )
 # fig
+color = 
+fig.add_scatter(y=df['y'], x=df['x'], fill='tozeroy', fillcolor=df['pos'], line_color=df['pos'])
