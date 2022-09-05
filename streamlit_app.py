@@ -69,8 +69,8 @@ t = alt.Chart(df).transform_calculate(
 # st.altair_chart(t)
 # import plotly.graph_objects as go
 # import plotly.express as px
-fig = px.area(df[:5], x="x", y="y",color = 'pos')
-st.plotly_chart(fig)
+# fig = px.area(df[:5], x="x", y="y",color = 'pos')
+# st.plotly_chart(fig)
 fig = go.Figure()
 fig2 = go.Figure()
 fig2.add_scattergl(x=df['x'], y=df['y'], line={'color': 'green'})
@@ -83,5 +83,17 @@ st.plotly_chart(fig2)
 # )
 # fig
 
-fig.add_scatter(y=df['y'], x=df['x'], fill='tozeroy', fillcolor=df['pos'], line_color=df['pos'])
-st.plotly_chart(fig)
+# fig.add_scatter(y=df['y'], x=df['x'], fill='tozeroy', fillcolor=df['pos'], line_color=df['pos'])
+# st.plotly_chart(fig)
+
+
+# Plot
+fig3 = go.Figure()
+fig3.add_trace(
+    go.area(name='Net',
+           x=df['x'],
+           y=df['y'],
+           marker_color=df['pos']))
+# fig.update_layout(barmode='stack')
+# fig.show()
+st.plotly_chart(fig3)
