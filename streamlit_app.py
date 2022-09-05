@@ -54,7 +54,7 @@ x = pd.date_range('2022-09-05 09:15:00',periods = 375, freq = '1min')
 # y = np.sin(x)
 df = pd.DataFrame({'x': x, 'y': y})
 
-df
+df['pos'] = np.where(df['y'] > 0, 'pos','neg')
 
 t = alt.Chart(df).transform_calculate(
     negative='datum.y < 0'
@@ -68,7 +68,7 @@ t = alt.Chart(df).transform_calculate(
 # st.altair_chart(t)
 import plotly.graph_objects as go
 import plotly.express as px
-fig = px.area(df, x="x", y="y")
+fig = px.area(df, x="x", y="y",color = 'pos')
 st.plotly_chart(fig)
 
 # fig = go.Figure(
