@@ -82,5 +82,6 @@ st.plotly_chart(fig2)
 #     layout_title_text="A Figure Displaying Itself"
 # )
 # fig
-color = 
+
 fig.add_scatter(y=df['y'], x=df['x'], fill='tozeroy', fillcolor=df['pos'], line_color=df['pos'])
+st.plotly_chart(fig)
