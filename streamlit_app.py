@@ -64,5 +64,5 @@ t = alt.Chart(df).transform_calculate(
     color='negative:N'
 )
 
-st.area_chart(t)
+st.area_chart(df)
 st.altair_chart(t)
