@@ -1,99 +1,88 @@
-from collections import namedtuple
-import altair as alt
-import math
-import pandas as pd
+from time import sleep
 import streamlit as st
-import numpy as np
-import plotly.graph_objs as go
-import plotly.express as px
-"""
-## Welcome to Rajinder Singh Algo engine tool 2!
-
-"""
-chart_data = pd.DataFrame(
-     np.random.randn(20, 1),
-     columns=['a'])
-
-series = pd.DataFrame({
-  'year': ['2010', '2011', '2012', '2013','2010', '2011', '2012', '2013'],
-  'animal': ['antelope', 'antelope', 'antelope', 'antelope', 'velociraptor', 'velociraptor', 'velociraptor', 'velociraptor',],
-  'count': [8, 6, 3, 1, 2, 4, 5, 5]
-})
-
-# Basic Altair line chart where it picks automatically the colors for the lines
-basic_chart = alt.Chart(series).mark_line().encode(
-    x='year',
-    y='count',
-    color='animal',
-    # legend=alt.Legend(title='Animals by year')
-)
-
-# Custom Altair line chart where you set color and specify dimensions
-custom_chart = alt.Chart(series).mark_line().encode(
-    x='year',
-    y='count',
-    color=alt.Color('animal',
-            scale=alt.Scale(
-                domain=['antelope', 'velociraptor'],
-                range=['blue', 'red'])
-                )
-).properties(
-    width=900,
-    height=500
-)
-
-st.altair_chart(basic_chart)
-st.altair_chart(custom_chart)
-
-import altair as alt
 import pandas as pd
 import numpy as np
+import datetime
+st.title('My Strategy')
 
-# x = 
-y = [np.random.randint(-2000,2000) for p in range(375)]
-x = pd.date_range('2022-09-05 09:15:00',periods = 375, freq = '1min')
-# y = np.sin(x)
-df = pd.DataFrame({'x': x, 'y': y})
-df['y'] = df['y'] + 500
-df['pos'] = np.where(df['y'] > 0, 'pos','neg')
+col1, col2, col3 = st.columns(3)
+with col1:
+	entry = st.time_input('Entry time', datetime.time(9, 25))
+with col2:
+	exit = st.time_input('exit time', datetime.time(15, 0))
+with col3:
+	capital = st.number_input('Enter capital', min_value = 100, value = 100000, step = 100)
 
-t = alt.Chart(df).transform_calculate(
-    negative='datum.y < 0'
-).mark_area().encode(
-    x='x',
-    y=alt.Y('y', impute={'value': 0}),
-    color='negative:N'
-)
+paper = st.checkbox('Paper trading', True, help = 'Turn on paper trading')
 
-# st.area_chart(df, x = 'x',y = 'y')
-# st.altair_chart(t)
-# import plotly.graph_objects as go
-# import plotly.express as px
-# fig = px.area(df[:5], x="x", y="y",color = 'pos')
-# st.plotly_chart(fig)
-fig = go.Figure()
-fig2 = go.Figure()
-fig2.add_scattergl(x=df['x'], y=df['y'], line={'color': 'green'})
-fig2.add_scattergl(x=df['x'], y=df['y'].where(df['y'] < 0), line={'color': 'red'})
-fig2.update_layout(showlegend=False,    title={'text':"MTM plot"},xaxis_title="Time",yaxis_title="PnL")
-st.plotly_chart(fig2)
-# fig = go.Figure(
-#     data=[go.Bar(y=[2, 1, 3])],
-#     layout_title_text="A Figure Displaying Itself"
-# )
-# fig
+col4, col5, col6, col7 = st.columns(4)
 
-# fig.add_scatter(y=df['y'], x=df['x'], fill='tozeroy', fillcolor=df['pos'], line_color=df['pos'])
-# st.plotly_chart(fig)
+with col4:
+	s1 = st.selectbox("Symbol1 select OHLC", options = ('Open', 'High', 'Low', 'Close'))
+with col5:
+	s2 = st.selectbox("Symbol2 select OHLC", options = ('Open', 'High', 'Low', 'Close'))
+with col6:
+	s3 = st.selectbox("Symbol3 select OHLC", options = ('Open', 'High', 'Low', 'Close'))
+with col7:
+	candle_length = st.number_input("Enter candle length", min_value = 1, value = 5, step = 1)
 
 
-# Plot
-fig3 = go.Figure()
-fig3.add_trace(
-    go.Scatter(name='Net',
-           x=df['x'],
-           y=df['y'],
-           marker_color=df['pos']))
-# fig.update_layout(barmode='stack')
-# fig.show()
-st.plotly_chart(fig3)
+uploaded_file = st.file_uploader("Upload symbol combination")
+if uploaded_file is not None:
+    dataframe = pd.read_csv(uploaded_file)
+    st.write(dataframe)
+
+
+run = st.button("Click me to run the strategy")
+
+if run:
+	total_pnl = 0
+	n = [np.random.randint(-1000,1000) for x in range(1000)]
+	dt  = datetime.datetime.now()
+	# dt = pd.date_range(start = dt, freq = '1min', period = 1000)
+	dt = pd.date_range(start = dt, periods = 1000, freq = '1min')
+	# st.text(n)
+	# st.text(dt)
+	df = pd.DataFrame({'dt':dt, 'pnl':n})
+	# for i in range(1000):
+	# 	total_pnl += n[i]
+	# 	# st.line_chart(total_pnl)
+	# 	# slee(1)
+	# st.text(total_pnl)
+	# st.line_chart(x = dt, y = n)
+	# st.table(df)
+	st.line_chart(df, x = 'dt', y = 'pnl')
+# if agree:
+#     st.write('Great!')
+# # st.write('Alarm is set for', t)
+
+# DATE_COLUMN = 'date/time'
+# DATA_URL = ('https://s3-us-west-2.amazonaws.com/'
+#             'streamlit-demo-data/uber-raw-data-sep14.csv.gz')
+
+# @st.cache
+# def load_data(nrows):
+#     data = pd.read_csv(DATA_URL, nrows=nrows)
+#     lowercase = lambda x: str(x).lower()
+#     data.rename(lowercase, axis='columns', inplace=True)
+#     data[DATE_COLUMN] = pd.to_datetime(data[DATE_COLUMN])
+#     return data
+
+# data_load_state = st.text('Loading data...')
+# data = load_data(10000)
+# data_load_state.text("Done! (using st.cache)")
+
+# if st.checkbox('Show raw data'):
+#     st.subheader('Raw data')
+#     st.write(data)
+
+# st.subheader('Number of pickups by hour')
+# hist_values = np.histogram(data[DATE_COLUMN].dt.hour, bins=24, range=(0,24))[0]
+# st.bar_chart(hist_values)
+
+# # Some number in the range 0-23
+# hour_to_filter = st.slider('hour', 0, 23, 17)
+# filtered_data = data[data[DATE_COLUMN].dt.hour == hour_to_filter]
+
+# st.subheader('Map of all pickups at %s:00' % hour_to_filter)
+# st.map(filtered_data)
